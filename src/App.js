@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Post from './Post.jsx';
-import PostForm from './PostForm.jsx';
+import Post from './Post';
+import PostForm from './PostForm';
 
 export default class App extends Component {
   render() {
