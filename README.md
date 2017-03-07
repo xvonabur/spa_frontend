@@ -1,1 +1,1 @@
-### SPA. Rails 5 + React
+### SPA. Rails 5 + React. Frontend
