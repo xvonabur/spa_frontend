@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
+import Post from './Post';
+import PostForm from './PostForm';
 
 export default class App extends Component {
   render() {
     return (
-      <h1>Hello =)</h1>
+      <div>
+        <Post />
+        <PostForm />
+      </div>
     );
   }
 }
