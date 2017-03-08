@@ -1,7 +1,15 @@
 import React from 'react';
 
-export default class Post extends React.Component {
+class Post extends React.Component {
   render() {
-    return <h2>Супер новость</h2>;
+    return <li>{this.props.name}: {this.props.description}</li>;
   }
 }
+
+Post.propTypes = {
+  id: React.PropTypes.number.isRequired,
+  name: React.PropTypes.string.isRequired,
+  description: React.PropTypes.string.isRequired
+}
+
+export default Post;

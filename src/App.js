@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import Post from './Post';
+import PostList from './PostList';
 import PostForm from './PostForm';
 
 export default class App extends Component {
   render() {
     return (
       <div>
-        <Post />
+        <PostList />
         <PostForm />
       </div>
     );
