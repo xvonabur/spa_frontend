@@ -1,17 +1,46 @@
 import React from 'react';
 import Post from './Post';
+import 'whatwg-fetch';
+
+const POSTS_API_BASE_URL = 'http://localhost:3000/api';
 
 export default class PostList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.getPosts = this.getPosts.bind(this);
+    this.state = {posts: []};
+  }
+
+  componentDidMount() {
+    this.getPosts()
+  }
+
+  getPosts() {
+    fetch(POSTS_API_BASE_URL + '/posts.json')
+      .then((response) => {
+        return response.json()
+      }).then((json) => {
+        return this.apiPostsToArray(json)
+      }).then((array) => {
+        this.setState({ posts: array });
+      });
+  }
+
+  apiPostsToArray(json) {
+    let arr = [];
+    json['data'].map((post) => {
+      let postObj = post['attributes'];
+      postObj['id'] = parseInt(post['id']);
+      arr.push(postObj);
+    });
+    return arr;
+  }
+
   render() {
-    let posts = [
-      {id: 1, name: 'First post', description: 'This is the first post.'},
-      {id: 2, name: 'Second post', description: 'This is the second post.'},
-      {id: 3, name: 'Third post', description: 'This is the third post.'}
-    ]; 
     return (
       <ul>
-        {posts.map((post) => <Post key={post.id} {...post} />)}
+        {this.state.posts.map((post) => <Post key={post.id} {...post} />)}
       </ul>
     );
- }
+  }
 }
