@@ -25,23 +25,14 @@ export default class PostForm extends React.Component {
   }
 
   handleSubmit(event) {
-    event.preventDefault();
-    fetch(process.env.API_URL + '/posts', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/vnd.api+json'
-      },
-      body: JSON.stringify({
-        post: {
-          title: this.state.title,
-          body: this.state.body
-        }
-      })
-    }).then(
-      this.props.onPostSubmit(this.state)
-    ).then(
-      this.setState(initialState)
-    )
+    event.preventDefault()
+    const title = this.state.title.trim()
+    const body = this.state.body.trim()
+    if (!title || !body) {
+      return
+    }
+    this.props.onPostSubmit(this.state)
+    this.setState(initialState)
   }
 
   render() {
