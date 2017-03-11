@@ -25,13 +25,10 @@ export default class PostList extends React.Component {
   }
 
   apiPostsToArray(json) {
-    let arr = [];
-    json['data'].map((post) => {
-      let postObj = post['attributes'];
-      postObj['id'] = parseInt(post['id']);
-      arr.push(postObj);
+    return json['data'].map((post) => {
+      post['attributes']['id'] = parseInt(post['id']);
+      return post['attributes'];
     });
-    return arr;
   }
 
   render() {
