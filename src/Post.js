@@ -7,7 +7,6 @@ class Post extends React.Component {
 }
 
 Post.propTypes = {
-  id: React.PropTypes.number.isRequired,
   title: React.PropTypes.string.isRequired,
   body: React.PropTypes.string.isRequired
 }

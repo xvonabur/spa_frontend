@@ -26,7 +26,6 @@ export default class PostList extends React.Component {
 
   apiPostsToArray(json) {
     return json['data'].map((post) => {
-      post['attributes']['id'] = parseInt(post['id']);
       return post['attributes'];
     });
   }
@@ -34,7 +33,7 @@ export default class PostList extends React.Component {
   render() {
     return (
       <ul>
-        {this.state.posts.map((post) => <Post key={post.id} {...post} />)}
+        {this.state.posts.map((post, index) => <Post key={index} {...post} />)}
       </ul>
     );
   }
