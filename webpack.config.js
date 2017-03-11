@@ -19,7 +19,12 @@ module.exports = {
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     // Handle errors more cleanly
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'API_URL': JSON.stringify('http://localhost:3000/api')
+      }
+    })
   ],
   eslint: {
     failOnWarning: false,
@@ -40,7 +45,7 @@ module.exports = {
         loaders: ['react-hot', 'babel'],
 
         include: [
-          path.resolve(__dirname, "src"),
+          path.resolve(__dirname, 'src'),
         ]
       },
     ]

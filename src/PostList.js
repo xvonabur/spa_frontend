@@ -2,8 +2,6 @@ import React from 'react';
 import Post from './Post';
 import 'whatwg-fetch';
 
-const POSTS_API_BASE_URL = 'http://localhost:3000/api';
-
 export default class PostList extends React.Component {
   constructor(props) {
     super(props);
@@ -16,7 +14,7 @@ export default class PostList extends React.Component {
   }
 
   getPosts() {
-    fetch(POSTS_API_BASE_URL + '/posts.json')
+    fetch(process.env.API_URL + '/posts.json')
       .then((response) => {
         return response.json()
       }).then((json) => {

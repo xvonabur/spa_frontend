@@ -1,6 +1,5 @@
 import React from 'react';
 
-const POSTS_API_BASE_URL = 'http://localhost:3000/api';
 const initialState = {
   title: '',
   body: ''
@@ -27,7 +26,7 @@ export default class PostForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    fetch(POSTS_API_BASE_URL + '/posts', {
+    fetch(process.env.API_URL + '/posts', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/vnd.api+json'
