@@ -37,7 +37,11 @@ export default class PostForm extends React.Component {
           body: this.state.body
         }
       })
-    }).then(this.setState(initialState))
+    }).then(
+      this.props.onPostSubmit(this.state)
+    ).then(
+      this.setState(initialState)
+    )
   }
 
   render() {
