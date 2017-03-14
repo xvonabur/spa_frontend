@@ -2,11 +2,8 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'cheap-module-source-map',
   entry: [
-    // Set up an ES6-ish environment
-    'babel-polyfill',
-    'webpack-hot-middleware/client',
     './src/index'
   ],
   output: {
@@ -17,12 +14,17 @@ module.exports = {
   plugins: [
     // Occurence ensures consistent build hashes (webpack 1.x only)
     new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
     // Handle errors more cleanly
     new webpack.NoErrorsPlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
+    }),
     new webpack.DefinePlugin({
       'process.env': {
-        'API_URL': JSON.stringify('http://localhost:3000/api')
+        'API_URL': JSON.stringify('http://35.157.231.186/api'),
+        'NODE_ENV': JSON.stringify('production')
       }
     })
   ],
@@ -42,8 +44,7 @@ module.exports = {
     loaders: [
       {
         test: /\.jsx?$/,
-        loaders: ['react-hot', 'babel'],
-
+        loaders: ['babel'],
         include: [
           path.resolve(__dirname, 'src'),
         ]
