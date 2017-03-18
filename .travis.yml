@@ -19,4 +19,4 @@ deploy:
   region: eu-central-1
   on:
     repo: xvonabur/spa_frontend
-    branch: task8
+    branch: master
