@@ -1,5 +1,5 @@
-const path = require('path');
-const webpack = require('webpack');
+const path = require('path')
+const webpack = require('webpack')
 
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
@@ -33,10 +33,10 @@ module.exports = {
   module: {
     preLoaders: [
       // ESLint
-      { 
-        test: /\.jsx?$/, 
-        loader: 'eslint', 
-        exclude: /node_modules/ 
+      {
+        test: /\.jsx?$/,
+        loader: 'eslint',
+        exclude: /node_modules/
       }
     ],
     loaders: [
@@ -45,9 +45,9 @@ module.exports = {
         loaders: ['react-hot', 'babel'],
 
         include: [
-          path.resolve(__dirname, 'src'),
+          path.resolve(__dirname, 'src')
         ]
-      },
+      }
     ]
   }
-};
+}

@@ -1,42 +1,42 @@
-import React from 'react';
-import Post from './Post';
-import PostForm from './PostForm';
-import TestButton from './TestButton';
-import 'whatwg-fetch';
+import React from 'react'
+import Post from './Post'
+import PostForm from './PostForm'
+import TestButton from './TestButton'
+import 'whatwg-fetch'
 
-const BASE_URL = process.env.API_URL;
+const BASE_URL = process.env.API_URL
 
 export default class PostList extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
-    this.getPosts = this.getPosts.bind(this);
+    this.getPosts = this.getPosts.bind(this)
     this.addPost = this.addPost.bind(this)
     this.state = {posts: []}
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.getPosts()
   }
 
-  getPosts() {
+  getPosts () {
     fetch(`${BASE_URL}/posts.json`)
     .then((response) => {
       return response.json()
     }).then((json) => {
-      return json['data'].map((post) => { return this.extractPostAttrs(post); })
+      return json['data'].map((post) => { return this.extractPostAttrs(post) })
     }).then((array) => {
-      this.setState({posts: array});
+      this.setState({posts: array})
     }).catch(err => {
       console.error(err.toString())
-    });
+    })
   }
 
-  extractPostAttrs(post) {
-    post['attributes']['id'] = post['id'];
-    return post['attributes'];
+  extractPostAttrs (post) {
+    post['attributes']['id'] = post['id']
+    return post['attributes']
   }
 
-  addPost(data) {
+  addPost (data) {
     fetch(`${BASE_URL}/posts.json`, {
       method: 'POST',
       headers: {
@@ -47,14 +47,14 @@ export default class PostList extends React.Component {
     }).then(response => {
       return response.json()
     }).then((json) => {
-      console.log('json', json);
+      console.log('json', json)
       return this.extractPostAttrs(json['data'])
     }).then(post => {
       this.setState({ posts: this.state.posts.concat([post]) })
     })
   }
 
-  render() {
+  render () {
     return (
       <div>
         <ul>
@@ -63,6 +63,6 @@ export default class PostList extends React.Component {
         <PostForm onPostSubmit={this.addPost} />
         <TestButton />
       </div>
-    );
+    )
   }
 }

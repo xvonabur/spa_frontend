@@ -1,22 +1,18 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { addPost } from '../actions/PostActions';
+import React from 'react'
+import { connect } from 'react-redux'
+import { addPost } from '../actions/PostActions'
 
 class TestButton extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return <button onClick={ this.props.handleTestClick }>Test</button>;
+  render () {
+    return <button onClick={ this.props.handleTestClick }>Test</button>
   }
 }
 
-const mapStateToProps = function() {
-  return {};
+const mapStateToProps = function () {
+  return {}
 }
 
-const mapDispatchToProps = function(dispatch) {
+const mapDispatchToProps = function (dispatch) {
   return {
     handleTestClick: () => dispatch(addPost)
   }
@@ -25,4 +21,8 @@ const mapDispatchToProps = function(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(TestButton);
+)(TestButton)
+
+TestButton.propTypes = {
+  handleTestClick: React.PropTypes.func
+}
