@@ -1,6 +1,7 @@
 import React from 'react';
 import Post from './Post';
 import PostForm from './PostForm';
+import TestButton from './TestButton';
 import 'whatwg-fetch';
 
 const BASE_URL = process.env.API_URL;
@@ -60,6 +61,7 @@ export default class PostList extends React.Component {
           {this.state.posts.map((post) => <Post key={post.id} {...post} />)}
         </ul>
         <PostForm onPostSubmit={this.addPost} />
+        <TestButton />
       </div>
     );
   }

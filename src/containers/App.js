@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PostList from './PostList';
+import PostList from '../components/PostList';
 import Promise from 'promise-polyfill';
 
 // To add to window
