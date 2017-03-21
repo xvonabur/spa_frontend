@@ -1,16 +1,12 @@
-export const SET_POST_TITLE = 'SET_POST_TITLE'
-export const SET_POST_BODY = 'SET_POST_BODY'
+import { createPost } from './PostActions'
 
-export const setPostTitleAction = (formObj) => ({
-  type: SET_POST_TITLE,
-  form: {
-    title: formObj.title
+export function submitPostForm (title, body) {
+  return (dispatch) => {
+    dispatch(createPost({
+      post: {
+        title,
+        body
+      }
+    }))
   }
-})
-
-export const setPostBodyAction = (formObj) => ({
-  type: SET_POST_BODY,
-  form: {
-    body: formObj.body
-  }
-})
+}
