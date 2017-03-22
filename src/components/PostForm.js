@@ -1,38 +1,24 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { submitPostForm } from '../actions/PostFormActions'
 
-const initialState = {
-  title: '',
-  body: ''
-}
-
-export default class PostForm extends React.Component {
+class PostForm extends React.Component {
   constructor (props) {
     super(props)
-    this.state = initialState
-
-    this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-  }
-
-  handleChange (event) {
-    const target = event.target
-    const value = target.value
-    const name = target.name
-
-    this.setState({
-      [name]: value
-    })
   }
 
   handleSubmit (event) {
     event.preventDefault()
-    const title = this.state.title.trim()
-    const body = this.state.body.trim()
+    const title = this.title.value.trim()
+    const body = this.body.value.trim()
     if (!title || !body) {
       return
     }
-    this.props.onPostSubmit(this.state)
-    this.setState(initialState)
+
+    this.props.submitPostForm(title, body)
+    this.title.value = this.body.value = ''
   }
 
   render () {
@@ -42,16 +28,18 @@ export default class PostForm extends React.Component {
           Title:
           <textarea
             name="title"
-            value={this.state.title}
-            onChange={this.handleChange} />
+            ref={node => {
+              this.title = node
+            }}/>
         </label>
         <br />
         <label>
           Body:
           <textarea
             name="body"
-            value={this.state.body}
-            onChange={this.handleChange} />
+            ref={node => {
+              this.body = node
+            }}/>
         </label>
         <input type="submit" value="Submit" />
       </form>
@@ -59,6 +47,12 @@ export default class PostForm extends React.Component {
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ submitPostForm }, dispatch)
+}
+
+export default connect(null, mapDispatchToProps)(PostForm)
+
 PostForm.propTypes = {
-  onPostSubmit: React.PropTypes.func
+  submitPostForm: React.PropTypes.func
 }
