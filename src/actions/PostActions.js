@@ -26,9 +26,9 @@ export const postReqHasErroredAction = (bool) => ({
   hasErrored: bool
 })
 
-export const fetchAllPostsAction = (posts) => ({
+export const fetchAllPostsAction = (response) => ({
   type: FETCH_ALL_POSTS,
-  posts: posts
+  response
 })
 
 function extractPostAttrs (post) {
@@ -36,7 +36,7 @@ function extractPostAttrs (post) {
   return post['attributes']
 }
 
-export function fetchPosts () {
+export const fetchPosts = () => {
   return (dispatch) => {
     fetch(`${BASE_URL}/posts.json`)
       .then((response) => {
@@ -52,7 +52,7 @@ export function fetchPosts () {
   }
 }
 
-export function createPost (data) {
+export const createPost = (data) => {
   return (dispatch) => {
     fetch(`${BASE_URL}/posts.json`, {
       method: 'POST',
@@ -74,7 +74,7 @@ export function createPost (data) {
   }
 }
 
-export function removePost (data) {
+export const removePost = (data) => {
   return (dispatch) => {
     fetch(`${BASE_URL}/posts/${data.post.id}.json`, {
       method: 'DELETE',

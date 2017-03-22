@@ -47,7 +47,7 @@ class PostForm extends React.Component {
   }
 }
 
-const mapDispatchToProps = function (dispatch) {
+const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ submitPostForm }, dispatch)
 }
 

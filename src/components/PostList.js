@@ -26,19 +26,17 @@ class PostList extends React.Component {
   }
 }
 
-const mapStateToProps = function (state) {
+const mapStateToProps = (state) => {
   return {
-    posts: state.posts.list,
-    hasErrored: state.posts.hasErrored
+    posts: state.posts.allIds.map(id => state.posts.byId[id]),
+    hasErrored: state.posts.reqResult.hasErrored
   }
 }
 
-const mapDispatchToProps = function (dispatch) {
-  return {
-    removePost: (data) => dispatch(removePost(data)),
-    fetchPosts: () => dispatch(fetchPosts())
-  }
-}
+const mapDispatchToProps = (dispatch) => ({
+  removePost: (data) => dispatch(removePost(data)),
+  fetchPosts: () => dispatch(fetchPosts())
+})
 
 export default connect(
   mapStateToProps,
