@@ -1,4 +1,4 @@
-import { ADD_POST, REMOVE_POST, FETCH_ALL_POSTS, POST_REQ_HAS_ERRORED } from '../actions/PostActions'
+import { ADD_POST, REMOVE_POST, FETCH_ALL_POSTS, POST_REQ_HAS_ERRORED, FETCH_POST } from '../actions/PostActions'
 import { combineReducers } from 'redux'
 import post from './post'
 import omit from 'lodash/omit'
@@ -6,14 +6,15 @@ import omit from 'lodash/omit'
 const byId = (state = {}, action) => {
   switch (action.type) {
     case ADD_POST:
+    case FETCH_POST:
       return {
         ...state,
-        [action.id]: post(state[action.id], action)
+        [action.post.id]: post(state[action.post.id], action)
       }
     case REMOVE_POST:
       return omit(state, action.post.id)
     case FETCH_ALL_POSTS: // eslint-disable-line no-case-declarations
-      const nextState = { ...state }
+      let nextState = { ...state }
       action.response.forEach(post => {
         nextState[post.id] = post
       })
@@ -26,11 +27,13 @@ const byId = (state = {}, action) => {
 const allIds = (state = [], action) => {
   switch (action.type) {
     case ADD_POST:
-      return [...state, action.id]
+      return [...state, action.post.id]
     case REMOVE_POST:
       return state.filter(id => id !== action.post.id)
     case FETCH_ALL_POSTS:
       return action.response.map(post => post.id)
+    case FETCH_POST:
+      return state.includes(action.post.id) ? state : [...state, action.post.id]
     default:
       return state
   }

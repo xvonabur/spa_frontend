@@ -2,6 +2,7 @@ export const ADD_POST = 'ADD_POST'
 export const REMOVE_POST = 'REMOVE_POST'
 export const POST_REQ_HAS_ERRORED = 'POST_REQ_HAS_ERRORED'
 export const FETCH_ALL_POSTS = 'FETCH_ALL_POSTS'
+export const FETCH_POST = 'FETCH_POST'
 
 const BASE_URL = process.env.API_URL
 
@@ -31,6 +32,11 @@ export const fetchAllPostsAction = (response) => ({
   response
 })
 
+export const fetchPostAction = (post) => ({
+  type: FETCH_POST,
+  post
+})
+
 function extractPostAttrs (post) {
   post['attributes']['id'] = post['id']
   return post['attributes']
@@ -45,6 +51,22 @@ export const fetchPosts = () => {
         return json['data'].map((post) => { return extractPostAttrs(post) })
       }).then((array) => {
         dispatch(fetchAllPostsAction(array))
+      }).catch(err => {
+        console.error(err.toString())
+        dispatch(postReqHasErroredAction(true))
+      })
+  }
+}
+
+export const fetchPostById = (id) => {
+  return (dispatch) => {
+    fetch(`${BASE_URL}/posts/${id}.json`)
+      .then((response) => {
+        return response.json()
+      }).then((json) => {
+        return extractPostAttrs(json['data'])
+      }).then((post) => {
+        dispatch(fetchPostAction(post))
       }).catch(err => {
         console.error(err.toString())
         dispatch(postReqHasErroredAction(true))
