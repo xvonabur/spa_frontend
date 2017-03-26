@@ -7,6 +7,11 @@ class PostForm extends React.Component {
   constructor (props) {
     super(props)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+  }
+
+  componentDidMount () {
+    this.submit.disabled = true
   }
 
   handleSubmit (event) {
@@ -19,6 +24,11 @@ class PostForm extends React.Component {
 
     this.props.submitPostForm(title, body)
     this.title.value = this.body.value = ''
+    this.submit.disabled = true
+  }
+
+  handleChange () {
+    this.submit.disabled = this.title.value === '' || this.body.value === ''
   }
 
   render () {
@@ -30,7 +40,8 @@ class PostForm extends React.Component {
             name="title"
             ref={node => {
               this.title = node
-            }}/>
+            }}
+            onChange={this.handleChange}/>
         </label>
         <br />
         <label>
@@ -39,9 +50,10 @@ class PostForm extends React.Component {
             name="body"
             ref={node => {
               this.body = node
-            }}/>
+            }}
+            onChange={this.handleChange}/>
         </label>
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Submit" ref={ node => { this.submit = node } } />
       </form>
     )
   }

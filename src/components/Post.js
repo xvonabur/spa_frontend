@@ -1,29 +1,24 @@
 import React from 'react'
+import { Link } from 'react-router'
 
 class Post extends React.Component {
-  constructor (props) {
-    super(props)
-
-    this.handleClick = this.handleClick.bind(this)
-  }
-
   render () {
-    return <li>
-      {this.props.title}: {this.props.body}
-      <button onClick={this.handleClick}>-</button>
-    </li>
-  }
-
-  handleClick () {
-    this.props.onRemove({ post: { id: this.props.id } })
+    if (this.props.link) {
+      return <Link to={this.props.link}>
+        {this.props.title}: {this.props.body}
+      </Link>
+    } else {
+      return <div>
+        {this.props.title}: {this.props.body}
+      </div>
+    }
   }
 }
 
 Post.propTypes = {
   title: React.PropTypes.string.isRequired,
   body: React.PropTypes.string.isRequired,
-  onRemove: React.PropTypes.func,
-  id: React.PropTypes.string
+  link: React.PropTypes.string
 }
 
 export default Post

@@ -4,14 +4,17 @@ import rootReducer from '../reducers'
 import createLogger from 'redux-logger'
 import { loadState, saveState } from '../localStorage'
 import throttle from 'lodash/throttle'
+import { routerMiddleware } from 'react-router-redux'
+import { browserHistory } from 'react-router'
 
 const logger = createLogger()
 const configureStore = () => {
+  const router = routerMiddleware(browserHistory)
   const preloadedState = loadState()
   const store = createStore(
     rootReducer,
     preloadedState,
-    applyMiddleware(thunk, logger)
+    applyMiddleware(router, thunk, logger)
   )
 
   store.subscribe(throttle(() => {

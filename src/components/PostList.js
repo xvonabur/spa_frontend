@@ -1,6 +1,5 @@
 import React from 'react'
 import Post from './Post'
-import PostForm from './PostForm'
 import { connect } from 'react-redux'
 import { removePost, fetchPosts } from '../actions/PostActions'
 import 'whatwg-fetch'
@@ -17,9 +16,13 @@ class PostList extends React.Component {
       return (
         <div>
           <ul>
-            {this.props.posts.map((post) => <Post onRemove={this.props.removePost} key={post.id} {...post} />)}
+            {this.props.posts.map((post) =>
+              <li key={post.id}>
+                <Post {...post} link={`/posts/${post.id}`} />
+                <button onClick={() => this.props.removePost({ post: { id: post.id } })}>-</button>
+              </li>
+            )}
           </ul>
-          <PostForm />
         </div>
       )
     }
