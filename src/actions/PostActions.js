@@ -74,13 +74,14 @@ export const fetchPostById = (id) => {
   }
 }
 
-export const createPost = (data) => {
+export const createPost = (data, token) => {
   return (dispatch) => {
     fetch(`${BASE_URL}/posts.json`, {
       method: 'POST',
       headers: {
         'Accept': 'application/vnd.api+json',
-        'Content-Type': 'application/vnd.api+json'
+        'Content-Type': 'application/vnd.api+json',
+        'Authorization': `Bearer ${token}`
       },
       body: JSON.stringify(data)
     }).then(response => {
@@ -96,13 +97,14 @@ export const createPost = (data) => {
   }
 }
 
-export const removePost = (data) => {
+export const removePost = (data, token) => {
   return (dispatch) => {
     fetch(`${BASE_URL}/posts/${data.post.id}.json`, {
       method: 'DELETE',
       headers: {
         'Accept': 'application/vnd.api+json',
-        'Content-Type': 'application/vnd.api+json'
+        'Content-Type': 'application/vnd.api+json',
+        'Authorization': `Bearer ${token}`
       }
     }).then(() => {
       dispatch(removePostAction(data.post))
