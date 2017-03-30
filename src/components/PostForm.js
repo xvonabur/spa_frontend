@@ -22,7 +22,7 @@ class PostForm extends React.Component {
       return
     }
 
-    this.props.submitPostForm(title, body)
+    this.props.submitPostForm(title, body, this.props.token)
     this.title.value = this.body.value = ''
     this.submit.disabled = true
   }
@@ -63,8 +63,13 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ submitPostForm }, dispatch)
 }
 
-export default connect(null, mapDispatchToProps)(PostForm)
+const mapStateToProps = (state) => ({
+  token: state.auth.token
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostForm)
 
 PostForm.propTypes = {
-  submitPostForm: React.PropTypes.func
+  submitPostForm: React.PropTypes.func,
+  token: React.PropTypes.string
 }

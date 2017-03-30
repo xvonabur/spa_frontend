@@ -19,7 +19,9 @@ class PostList extends React.Component {
             {this.props.posts.map((post) =>
               <li key={post.id}>
                 <Post {...post} link={`/posts/${post.id}`} />
-                <button onClick={() => this.props.removePost({ post: { id: post.id } })}>-</button>
+                { post['user-id'] === this.props.userId &&
+                  <button onClick={() => this.props.removePost({ post: { id: post.id } }, this.props.token)}>-</button>
+                }
               </li>
             )}
           </ul>
@@ -32,12 +34,14 @@ class PostList extends React.Component {
 const mapStateToProps = (state) => {
   return {
     posts: state.posts.allIds.map(id => state.posts.byId[id]),
-    hasErrored: state.posts.reqResult.hasErrored
+    hasErrored: state.posts.reqResult.hasErrored,
+    token: state.auth.token,
+    userId: state.auth.userId
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  removePost: (data) => dispatch(removePost(data)),
+  removePost: (data, token) => dispatch(removePost(data, token)),
   fetchPosts: () => dispatch(fetchPosts())
 })
 
@@ -50,5 +54,7 @@ PostList.propTypes = {
   removePost: React.PropTypes.func,
   posts: React.PropTypes.array,
   hasErrored: React.PropTypes.bool,
-  fetchPosts: React.PropTypes.func
+  fetchPosts: React.PropTypes.func,
+  token: React.PropTypes.string,
+  userId: React.PropTypes.number
 }
