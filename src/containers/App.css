@@ -1,0 +1,144 @@
+.bd-pageheader {
+    padding: 2rem 15px;
+    margin-bottom: 1.5rem;
+    color: #cdbfe3;
+    text-align: center;
+    background-color: #563d7c
+}
+
+.bd-pageheader .container {
+    position: relative
+}
+
+.bd-pageheader h1 {
+    font-size: 3rem;
+    font-weight: 400;
+    color: #fff
+}
+
+.bd-pageheader p {
+    margin-bottom: 0;
+    font-size: 1.25rem;
+    font-weight: 300
+}
+
+@media (min-width:576px) {
+    .bd-pageheader {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+        margin-bottom: 3rem;
+        text-align: left
+    }
+    .bd-pageheader .carbonad {
+        margin: 2rem 0 0!important
+    }
+}
+
+@media (min-width:768px) {
+    .bd-pageheader h1 {
+        font-size: 4rem
+    }
+    .bd-pageheader p {
+        font-size: 1.5rem
+    }
+}
+
+@media (min-width:992px) {
+    .bd-pageheader h1,
+    .bd-pageheader p {
+        margin-right: 380px
+    }
+    .bd-pageheader .carbonad {
+        position: absolute;
+        top: 0;
+        right: .75rem;
+        margin: 0!important
+    }
+}
+
+.bd-sidebar .nav>li>a {
+    display: block;
+    padding: .25rem .75rem;
+    font-size: 90%;
+    color: #99979c
+}
+
+.bd-sidebar .nav>li>a:focus,
+.bd-sidebar .nav>li>a:hover {
+    color: #0275d8;
+    text-decoration: none;
+    background-color: transparent
+}
+
+.bd-sidebar .nav>.active:focus>a,
+.bd-sidebar .nav>.active:hover>a,
+.bd-sidebar .nav>.active>a {
+    font-weight: 500;
+    color: #292b2c;
+    background-color: transparent
+}
+
+@media (min-width:768px) {
+    .bd-sidebar {
+        padding-left: 1rem
+    }
+}
+
+.bd-content>table {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    overflow-y: auto
+}
+
+.bd-content>table>tbody>tr>td,
+.bd-content>table>tbody>tr>th,
+.bd-content>table>tfoot>tr>td,
+.bd-content>table>tfoot>tr>th,
+.bd-content>table>thead>tr>td,
+.bd-content>table>thead>tr>th {
+    padding: .75rem;
+    vertical-align: top;
+    border: 1px solid #eceeef
+}
+
+.bd-content>table>tbody>tr>td>p:last-child,
+.bd-content>table>tbody>tr>th>p:last-child,
+.bd-content>table>tfoot>tr>td>p:last-child,
+.bd-content>table>tfoot>tr>th>p:last-child,
+.bd-content>table>thead>tr>td>p:last-child,
+.bd-content>table>thead>tr>th>p:last-child {
+    margin-bottom: 0
+}
+
+.bd-content>table td:first-child>code {
+    white-space: nowrap
+}
+
+.bd-content>h2:not(:first-child) {
+    margin-top: 3rem
+}
+
+.bd-content>h3 {
+    margin-top: 1.5rem
+}
+
+.bd-content>ol li,
+.bd-content>ul li {
+    margin-bottom: .25rem
+}
+
+ul.pagination {
+    display: inline-block;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+ul.pagination li {
+    display: inline-block;
+}
+
+ul.pagination .break a {
+    cursor: default;
+}

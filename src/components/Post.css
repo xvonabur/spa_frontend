@@ -1,0 +1,20 @@
+a.post-link {
+    color: #333333;
+}
+
+a.post-link:hover {
+    color: #333333;
+}
+
+.post-wrapper {
+    margin-bottom: 80px;
+}
+
+.post-date {
+    color: #636c72;
+    font-size: 0.8rem;
+}
+
+.post img {
+    max-width: 300px;
+}

@@ -22,7 +22,10 @@ module.exports = {
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
-        'API_URL': JSON.stringify('http://localhost:3000/api')
+        'API_URL': JSON.stringify('http://localhost:3000/api'),
+        'API_VERSION': JSON.stringify('2'),
+        'API_CONTENT_TYPE': JSON.stringify('application/vnd.api+json'),
+        'UPLOADS_URL': JSON.stringify('http://localhost:3000')
       }
     })
   ],
@@ -47,6 +50,10 @@ module.exports = {
         include: [
           path.resolve(__dirname, 'src')
         ]
+      },
+      {
+        test: /\.css$/,
+        loaders: [ 'style-loader', 'css-loader' ]
       }
     ]
   }
