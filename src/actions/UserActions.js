@@ -5,10 +5,11 @@ export const LOGIN_USER_REQUEST = 'LOGIN_USER_REQUEST'
 export const LOGIN_USER_FAILURE = 'LOGIN_USER_FAILURE'
 export const LOGIN_USER_SUCCESS = 'LOGIN_USER_SUCCESS'
 export const LOGOUT_USER = 'LOGOUT_USER'
-export const FETCH_PROTECTED_DATA_REQUEST = 'FETCH_PROTECTED_DATA_REQUEST'
-export const RECEIVE_PROTECTED_DATA = 'RECEIVE_PROTECTED_DATA'
 
 const BASE_URL = process.env.API_URL
+const API_VERSION = process.env.API_VERSION
+const API_CONTENT_TYPE = process.env.API_CONTENT_TYPE
+const ACCEPT_HEADER = `${API_CONTENT_TYPE}; version=2${API_VERSION}`
 
 export function loginUserSuccess (token, userId) {
   return {
@@ -45,8 +46,8 @@ export const loginUser = (email, password) => {
     fetch(`${BASE_URL}/user_token.json`, {
       method: 'POST',
       headers: {
-        'Accept': 'application/vnd.api+json',
-        'Content-Type': 'application/vnd.api+json'
+        'Accept': ACCEPT_HEADER,
+        'Content-Type': API_CONTENT_TYPE
       },
       body: JSON.stringify({auth: {email: email, password: password}})
     })

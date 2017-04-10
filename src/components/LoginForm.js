@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { loginUser } from '../actions/UserActions'
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
 
 class LoginForm extends Component {
   constructor (props) {
@@ -24,25 +25,31 @@ class LoginForm extends Component {
       <div>
         <h3>Log in to create a post</h3>
         {this.props.statusText ? <div className='alert alert-info'>{this.props.statusText}</div> : ''}
-        <form role='form'>
-          <div>
-            <input type='text'
-                   ref={node => {
+        <Form inline>
+          <FormGroup>
+            <Label for="email" hidden>Email</Label>
+            <Input type="email"
+                   name="email"
+                   id="email"
+                   placeholder="Email"
+                   getRef={node => {
                      this.email = node
-                   }}
-                   placeholder='Email' />
-          </div>
-          <div>
-            <input type='password'
-                   ref={node => {
+                   }} />
+          </FormGroup>
+          {' '}
+          <FormGroup>
+            <Label for="password" hidden>Password</Label>
+            <Input type="password"
+                   name="password"
+                   id="password"
+                   getRef={node => {
                      this.password = node
                    }}
                    placeholder='Password' />
-          </div>
-          <button type='submit'
-                  disabled={this.props.isAuthenticating}
-                  onClick={this.login}>Log in</button>
-        </form>
+          </FormGroup>
+          {' '}
+          <Button disabled={this.props.isAuthenticating} onClick={this.login}>Log in</Button>
+        </Form>
       </div>
     )
   }

@@ -24,6 +24,9 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': {
         'API_URL': JSON.stringify('http://35.157.231.186/api'),
+        'UPLOADS_URL': JSON.stringify('http://35.157.231.186'),
+        'API_VERSION': JSON.stringify(2),
+        'API_CONTENT_TYPE': JSON.stringify('application/vnd.api+json'),
         'NODE_ENV': JSON.stringify('production')
       }
     })
