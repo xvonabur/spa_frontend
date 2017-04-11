@@ -1,5 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
+const Dotenv = require('dotenv-webpack')
 
 module.exports = {
   devtool: 'cheap-module-source-map',
@@ -21,14 +22,9 @@ module.exports = {
         warnings: false
       }
     }),
-    new webpack.DefinePlugin({
-      'process.env': {
-        'API_URL': JSON.stringify('http://35.157.231.186/api'),
-        'UPLOADS_URL': JSON.stringify('http://35.157.231.186'),
-        'API_VERSION': JSON.stringify(2),
-        'API_CONTENT_TYPE': JSON.stringify('application/vnd.api+json'),
-        'NODE_ENV': JSON.stringify('production')
-      }
+    new Dotenv({
+      path: './.env.production', // Path to .env file (this is the default)
+      safe: false // load .env.example (defaults to "false" which does not use dotenv-safe)
     })
   ],
   eslint: {

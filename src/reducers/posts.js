@@ -64,7 +64,7 @@ const pagination = (state = {total: 0, limit: 0, currentPage: 1}, action) => {
   }
 }
 
-const filters = (state = {}, action) => {
+const filters = (state = { search: '' }, action) => {
   switch (action.type) {
     case ADD_FILTER:
       return {

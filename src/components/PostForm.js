@@ -37,30 +37,24 @@ class PostForm extends React.Component {
   render () {
     return (
       <Form onSubmit={this.handleSubmit}>
-        <FormGroup row>
-          <Label for="title" sm={2}>Title</Label>
-          <Col sm={10}>
-            <Input type="textarea"
-                   name="text"
-                   id="title"
-                   getRef={node => {
-                     this.title = node
-                   }}
-                   onChange={this.handleChange} />
-          </Col>
-        </FormGroup>
-        <FormGroup row>
-          <Label for="body" sm={2}>Body</Label>
-          <Col sm={10}>
-            <Input type="textarea"
-                   name="text"
-                   id="body"
-                   getRef={node => {
-                     this.body = node
-                   }}
-                   onChange={this.handleChange} />
-          </Col>
-        </FormGroup>
+        {
+          ['Title', 'Body'].map((title, key) => {
+            const lowerCaseTitle = title.toLocaleLowerCase()
+            return <FormGroup row key={key}>
+              <Label for={lowerCaseTitle} sm={2}>{title}</Label>
+              <Col sm={10}>
+                <Input type="textarea"
+                       name="text"
+                       id={lowerCaseTitle}
+                       getRef={node => {
+                         this[lowerCaseTitle] = node
+                       }}
+                       onChange={this.handleChange}
+                />
+              </Col>
+            </FormGroup>
+          })
+        }
         <Dropzone ref={ node => { this.dropzone = node } }>
           <div>Try dropping some files here, or click to select files to upload.</div>
         </Dropzone>
