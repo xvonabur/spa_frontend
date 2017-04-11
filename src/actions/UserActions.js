@@ -1,5 +1,6 @@
 import { checkHttpStatus } from '../util/index'
 import jwtDecode from 'jwt-decode'
+import rg4js from 'raygun4js'
 
 export const LOGIN_USER_REQUEST = 'LOGIN_USER_REQUEST'
 export const LOGIN_USER_FAILURE = 'LOGIN_USER_FAILURE'
@@ -69,6 +70,7 @@ export const loginUser = (email, password) => {
       }
     })
     .catch(error => {
+      rg4js('send', error)
       dispatch(loginUserFailure(error))
     })
   }

@@ -1,5 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
+const Dotenv = require('dotenv-webpack')
 
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
@@ -20,13 +21,9 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     // Handle errors more cleanly
     new webpack.NoErrorsPlugin(),
-    new webpack.DefinePlugin({
-      'process.env': {
-        'API_URL': JSON.stringify('http://localhost:3000/api'),
-        'API_VERSION': JSON.stringify('2'),
-        'API_CONTENT_TYPE': JSON.stringify('application/vnd.api+json'),
-        'UPLOADS_URL': JSON.stringify('http://localhost:3000')
-      }
+    new Dotenv({
+      path: './.env', // Path to .env file (this is the default)
+      safe: false // load .env.example (defaults to "false" which does not use dotenv-safe)
     })
   ],
   eslint: {
