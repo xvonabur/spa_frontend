@@ -21,7 +21,8 @@ const configureStore = () => {
     saveState({
       posts: store.getState().posts,
       auth: store.getState().auth,
-      locale: store.getState().locale
+      locale: store.getState().locale,
+      user: store.getState().user
     })
   }, 1000))
 

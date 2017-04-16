@@ -1,0 +1,15 @@
+{
+  "loginForm.loginHeader": "Log in to create a post",
+  "loginForm.emailPlaceholder": "Email",
+  "loginForm.passwordPlaceholder": "Password",
+  "loginForm.loginButton": "Log in",
+  "navbar.navLink.home": "Home",
+  "postform.dropzoneHelp": "Try dropping some files here, or click to select files to upload.",
+  "postform.submitButton": "Submit",
+  "userLanguageInput.label": "User language",
+  "app.headerLead": "Single Page Application Example",
+  "sidebar.searchPlaceHolder": "Search...",
+  "sidebar.sortingDesc": "desc",
+  "sidebar.sortingAsc": "asc",
+  "sidebar.sortByPublishDateLabel": "Sort by publish date"
+}

@@ -20,7 +20,6 @@ class Navbar extends Component {
 
   handleChangeLang (event) {
     event.preventDefault()
-    console.log('content', event.target.text)
     this.props.changeLocale(event.target.text)
   }
 

@@ -17,11 +17,11 @@ class Root extends Component {
   }
 
   componentWillMount () {
-    this.props.changeLocale(currentLang())
+    this.props.changeLocale(this.props.locale.lang || currentLang())
   }
 
   render () {
-    const lang = currentLang()
+    const lang = this.props.locale.lang || currentLang()
     const messages = this.props.locale.messages
 
     return <Provider store={this.props.store}>

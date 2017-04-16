@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { addFilterAction, fetchPosts } from '../actions/PostActions'
 import { intlShape, injectIntl, defineMessages } from 'react-intl'
+import UserLanguageInput from '../components/UserLanguageInput'
+import { AuthenticatedOrGuest } from '../util/index'
 
 const messages = defineMessages({
   searchPlaceHolder: {
@@ -23,6 +25,8 @@ const messages = defineMessages({
     defaultMessage: 'Sort by publish date'
   }
 })
+
+const AuthUserLanguageInput = AuthenticatedOrGuest(UserLanguageInput)
 
 class Sidebar extends Component {
   constructor (props) {
@@ -94,6 +98,7 @@ class Sidebar extends Component {
             </option>
           </Input>
         </FormGroup>
+        <AuthUserLanguageInput />
       </Form>
     )
   }
@@ -108,7 +113,9 @@ Sidebar.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    filters: state.posts.filters
+    filters: state.posts.filters,
+    token: state.auth.token,
+    user: state.user
   }
 }
 
