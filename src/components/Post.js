@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
 import './Post.css'
+import { FormattedDate } from 'react-intl'
 
 const UPLOADS_URL = process.env.UPLOADS_URL
 
@@ -14,7 +15,9 @@ class Post extends React.Component {
           }
           { !this.props.link && this.props.title }
         </h4>
-      <p className="post-date">{postDate.getDate()}.{postDate.getMonth()}.{postDate.getFullYear()}</p>
+      <p className="post-date">
+        <FormattedDate value={postDate} />
+      </p>
       { this.props.image !== null && this.props.image.url !== null &&
         <img src={ UPLOADS_URL + this.props.image.url }/>
       }

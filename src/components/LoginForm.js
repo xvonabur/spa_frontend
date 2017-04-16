@@ -2,7 +2,27 @@ import React, { Component, PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { loginUser } from '../actions/UserActions'
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
+import { Button, Form, FormGroup, Input } from 'reactstrap'
+import { intlShape, injectIntl, defineMessages } from 'react-intl'
+
+const messages = defineMessages({
+  loginHeader: {
+    id: 'loginForm.loginHeader',
+    defaultMessage: 'Log in to create a post'
+  },
+  emailPlaceholder: {
+    id: 'loginForm.emailPlaceholder',
+    defaultMessage: 'Email'
+  },
+  passwordPlaceholder: {
+    id: 'loginForm.passwordPlaceholder',
+    defaultMessage: 'Password'
+  },
+  loginButton: {
+    id: 'loginForm.loginButton',
+    defaultMessage: 'Log in'
+  }
+})
 
 class LoginForm extends Component {
   constructor (props) {
@@ -23,32 +43,32 @@ class LoginForm extends Component {
   render () {
     return (
       <div>
-        <h3>Log in to create a post</h3>
+        <h3>{ this.props.intl.formatMessage(messages.loginHeader) }</h3>
         {this.props.statusText ? <div className='alert alert-info'>{this.props.statusText}</div> : ''}
         <Form inline>
           <FormGroup>
-            <Label for="email" hidden>Email</Label>
             <Input type="email"
                    name="email"
                    id="email"
-                   placeholder="Email"
+                   placeholder={this.props.intl.formatMessage(messages.emailPlaceholder)}
                    getRef={node => {
                      this.email = node
                    }} />
           </FormGroup>
           {' '}
           <FormGroup>
-            <Label for="password" hidden>Password</Label>
             <Input type="password"
                    name="password"
                    id="password"
                    getRef={node => {
                      this.password = node
                    }}
-                   placeholder='Password' />
+                   placeholder={this.props.intl.formatMessage(messages.passwordPlaceholder)} />
           </FormGroup>
           {' '}
-          <Button disabled={this.props.isAuthenticating} onClick={this.login}>Log in</Button>
+          <Button disabled={this.props.isAuthenticating} onClick={this.login}>
+            {this.props.intl.formatMessage(messages.loginButton)}
+          </Button>
         </Form>
       </div>
     )
@@ -67,7 +87,8 @@ const mapDispatchToProps = (dispatch) => {
 LoginForm.propTypes = {
   isAuthenticating: PropTypes.bool,
   statusText: PropTypes.string,
-  loginUser: PropTypes.func
+  loginUser: PropTypes.func,
+  intl: intlShape.isRequired
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(LoginForm))
