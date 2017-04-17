@@ -1,0 +1,15 @@
+{
+  "loginForm.loginHeader": "Авторизуйтесь, чтобы создать пост",
+  "loginForm.emailPlaceholder": "Email",
+  "loginForm.passwordPlaceholder": "Пароль",
+  "loginForm.loginButton": "Войти",
+  "navbar.navLink.home": "Главная",
+  "postform.dropzoneHelp": "Перетащите файл для загрузки или щелкните на выделенный блок",
+  "postform.submitButton": "Отправить",
+  "userLanguageInput.label": "Язык интерфейса для пользователя",
+  "app.headerLead": "Пример одностраничного приложения",
+  "sidebar.searchPlaceHolder": "Поиск...",
+  "sidebar.sortByPublishDateLabel": "Сортировать по дате публикации",
+  "sidebar.sortingDesc": "По убыванию",
+  "sidebar.sortingAsc": "По возрастанию"
+}

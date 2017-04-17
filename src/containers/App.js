@@ -1,17 +1,13 @@
 import React, { PropTypes, Component } from 'react'
 import Promise from 'promise-polyfill'
 import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  Nav,
-  NavItem,
-  NavLink,
   Container,
   Row,
   Col
 } from 'reactstrap'
 import Sidebar from './Sidebar'
+import { FormattedMessage } from 'react-intl'
+import Navbar from './../components/Navbar'
 import './App.css'
 
 // To add to window
@@ -23,24 +19,13 @@ class App extends Component {
   render () {
     return (
       <div>
-        <Navbar light toggleable>
-          <NavbarToggler right onClick={this.toggle} />
-          <Collapse navbar>
-            <Nav className="container" navbar>
-              <NavItem>
-                <NavLink href="/">Home</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="https://github.com/xvonabur/spa_frontend">Github</NavLink>
-              </NavItem>
-            </Nav>
-          </Collapse>
-        </Navbar>
+        <Navbar/>
         <div className="bd-pageheader">
           <Container>
             <h1>SPA</h1>
             <p className="lead">
-              Single Page Application Example
+              <FormattedMessage id="app.headerLead"
+                                defaultMessage="Single Page Application Example"/>
             </p>
           </Container>
         </div>

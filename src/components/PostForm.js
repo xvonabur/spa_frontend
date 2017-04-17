@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import { submitPostForm } from '../actions/PostFormActions'
 import { Form, FormGroup, Label, Input, Col, Button } from 'reactstrap'
 const Dropzone = require('react-dropzone')
+import { FormattedMessage } from 'react-intl'
 
 class PostForm extends React.Component {
   constructor (props) {
@@ -56,9 +57,15 @@ class PostForm extends React.Component {
           })
         }
         <Dropzone ref={ node => { this.dropzone = node } }>
-          <div>Try dropping some files here, or click to select files to upload.</div>
+          <div>
+            <FormattedMessage id="postform.dropzoneHelp"
+                              defaultMessage="Try dropping some files here, or click to select files to upload." />
+          </div>
         </Dropzone>
-        <Button getRef={ node => { this.submit = node } }>Submit</Button>
+        <Button getRef={ node => { this.submit = node } }>
+          <FormattedMessage id="postform.submitButton"
+                            defaultMessage="Submit" />
+        </Button>
       </Form>
     )
   }

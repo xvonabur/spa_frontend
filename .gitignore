@@ -5,3 +5,4 @@ public/dist
 .idea
 .env
 .env.production
+build/messages

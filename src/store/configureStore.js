@@ -20,7 +20,9 @@ const configureStore = () => {
   store.subscribe(throttle(() => {
     saveState({
       posts: store.getState().posts,
-      auth: store.getState().auth
+      auth: store.getState().auth,
+      locale: store.getState().locale,
+      user: store.getState().user
     })
   }, 1000))
 

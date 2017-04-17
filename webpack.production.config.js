@@ -47,6 +47,14 @@ module.exports = {
         include: [
           path.resolve(__dirname, 'src')
         ]
+      },
+      {
+        test: /\.css$/,
+        loaders: [ 'style-loader', 'css-loader' ]
+      },
+      {
+        test: /\.json$/,
+        loader: 'json'
       }
     ]
   }

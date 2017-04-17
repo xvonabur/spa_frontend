@@ -11,6 +11,13 @@ let compiler = webpack(config)
 app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }))
 app.use(webpackHotMiddleware(compiler))
 
+const locales = ['en', 'ru']
+locales.forEach((locale) => {
+  app.get(`/dist/lang/${locale}.json`, function (req, res) {
+    res.sendFile(path.join(__dirname, `/build/lang/${locale}.json`))
+  })
+})
+
 app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, '/public/index.html'))
 })

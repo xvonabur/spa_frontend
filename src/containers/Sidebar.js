@@ -3,6 +3,30 @@ import { Form, Input, FormGroup, Label } from 'reactstrap'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { addFilterAction, fetchPosts } from '../actions/PostActions'
+import { intlShape, injectIntl, defineMessages } from 'react-intl'
+import UserLanguageInput from '../components/UserLanguageInput'
+import { AuthenticatedOrGuest } from '../util/index'
+
+const messages = defineMessages({
+  searchPlaceHolder: {
+    id: 'sidebar.searchPlaceHolder',
+    defaultMessage: 'Search...'
+  },
+  sortingDesc: {
+    id: 'sidebar.sortingDesc',
+    defaultMessage: 'desc'
+  },
+  sortingAsc: {
+    id: 'sidebar.sortingAsc',
+    defaultMessage: 'asc'
+  },
+  sortByPublishDateLabel: {
+    id: 'sidebar.sortByPublishDateLabel',
+    defaultMessage: 'Sort by publish date'
+  }
+})
+
+const AuthUserLanguageInput = AuthenticatedOrGuest(UserLanguageInput)
 
 class Sidebar extends Component {
   constructor (props) {
@@ -50,7 +74,7 @@ class Sidebar extends Component {
           <Input type="text"
                  className="form-control"
                  id="search-input"
-                 placeholder="Search..."
+                 placeholder={this.props.intl.formatMessage(messages.searchPlaceHolder)}
                  getRef={node => {
                    this.searchBox = node
                  }}
@@ -58,16 +82,23 @@ class Sidebar extends Component {
                  onChange={this.handleSearchBoxChange} />
         </FormGroup>
         <FormGroup>
-          <Label for="sortByDate">Sort by publish date</Label>
+          <Label for="sortByDate">
+            { this.props.intl.formatMessage(messages.sortByPublishDateLabel) }
+          </Label>
           <Input type="select" name="select" id="sortByDate" onChange={this.handleSortingChange}
                  getRef={node => {
                    this.sortDirection = node
                  }}>
             <option/>
-            <option>desc</option>
-            <option>asc</option>
+            <option value='desc'>
+              { this.props.intl.formatMessage(messages.sortingDesc) }
+            </option>
+            <option value='asc'>
+              { this.props.intl.formatMessage(messages.sortingAsc) }
+            </option>
           </Input>
         </FormGroup>
+        <AuthUserLanguageInput />
       </Form>
     )
   }
@@ -76,12 +107,15 @@ class Sidebar extends Component {
 Sidebar.propTypes = {
   addFilterAction: PropTypes.func,
   filters: PropTypes.object,
-  fetchPosts: PropTypes.func
+  fetchPosts: PropTypes.func,
+  intl: intlShape.isRequired
 }
 
 const mapStateToProps = (state) => {
   return {
-    filters: state.posts.filters
+    filters: state.posts.filters,
+    token: state.auth.token,
+    user: state.user
   }
 }
 
@@ -89,4 +123,4 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ addFilterAction, fetchPosts }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Sidebar)
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(Sidebar))
