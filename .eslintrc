@@ -12,7 +12,8 @@
     "es6": true,
     "browser": true,
     "node": true,
-    "commonjs": true
+    "commonjs": true,
+    "codeceptjs/codeceptjs": true
   },
   "parser": "babel-eslint",
   "rules": {
@@ -24,6 +25,7 @@
     "no-console": 0
   },
   "plugins": [
-    "react"
+    "react",
+    "codeceptjs"
   ]
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
-import './Post.css'
+// import './Post.css'
 import { FormattedDate } from 'react-intl'
 
 const UPLOADS_URL = process.env.UPLOADS_URL

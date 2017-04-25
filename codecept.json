@@ -1,0 +1,14 @@
+{
+  "tests": "./test/acceptance/*_test.js",
+  "timeout": 10000,
+  "output": "./test/output",
+  "helpers": {
+    "Nightmare": {
+      "url": "http://localhost:4000"
+    }
+  },
+  "include": {},
+  "bootstrap": false,
+  "mocha": {},
+  "name": "acceptance"
+}

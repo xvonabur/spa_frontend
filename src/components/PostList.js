@@ -33,7 +33,8 @@ class PostList extends React.Component {
             <div key={post.id} className="post-wrapper">
               <Post {...post} link={`/posts/${post.id}`} />
               { post['user-id'] === this.props.userId && post['user-id'] !== null &&
-              <Button color="danger" onClick={() => this.props.removePost({ post: { id: post.id } }, this.props.token)}>
+              <Button color="danger" onClick={() => this.props.removePost({ post: { id: post.id } }, this.props.token)}
+                className="post-remove-btn">
                 Delete
               </Button>
               }

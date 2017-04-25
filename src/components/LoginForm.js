@@ -66,7 +66,7 @@ class LoginForm extends Component {
                    placeholder={this.props.intl.formatMessage(messages.passwordPlaceholder)} />
           </FormGroup>
           {' '}
-          <Button disabled={this.props.isAuthenticating} onClick={this.login}>
+          <Button disabled={this.props.isAuthenticating} onClick={this.login} id='loginBtn'>
             {this.props.intl.formatMessage(messages.loginButton)}
           </Button>
         </Form>

@@ -37,7 +37,7 @@ class PostForm extends React.Component {
 
   render () {
     return (
-      <Form onSubmit={this.handleSubmit}>
+      <Form onSubmit={this.handleSubmit} id="postForm">
         {
           ['Title', 'Body'].map((title, key) => {
             const lowerCaseTitle = title.toLocaleLowerCase()
@@ -45,7 +45,7 @@ class PostForm extends React.Component {
               <Label for={lowerCaseTitle} sm={2}>{title}</Label>
               <Col sm={10}>
                 <Input type="textarea"
-                       name="text"
+                       name={`post-${lowerCaseTitle}`}
                        id={lowerCaseTitle}
                        getRef={node => {
                          this[lowerCaseTitle] = node
@@ -62,7 +62,7 @@ class PostForm extends React.Component {
                               defaultMessage="Try dropping some files here, or click to select files to upload." />
           </div>
         </Dropzone>
-        <Button getRef={ node => { this.submit = node } }>
+        <Button getRef={ node => { this.submit = node } } id="postSubmitBtn">
           <FormattedMessage id="postform.submitButton"
                             defaultMessage="Submit" />
         </Button>

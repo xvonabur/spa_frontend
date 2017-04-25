@@ -22,10 +22,14 @@ app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, '/public/index.html'))
 })
 
-app.listen(PORT, function (error) {
+let server = app.listen(PORT, function (error) {
   if (error) {
     console.error(error)
   } else {
     console.info('==> http://localhost:%s/', PORT)
   }
 })
+
+exports.close = () => {
+  server.close()
+}

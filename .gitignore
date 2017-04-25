@@ -6,3 +6,4 @@ public/dist
 .env
 .env.production
 build/messages
+test/output

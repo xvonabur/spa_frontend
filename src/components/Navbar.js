@@ -40,10 +40,10 @@ class Navbar extends Component {
               <NavLink href="https://github.com/xvonabur/spa_frontend">Github</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink onClick={this.handleChangeLang}>ru</NavLink>
+              <NavLink onClick={this.handleChangeLang} id="ruLangChange">ru</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="" onClick={this.handleChangeLang}>en</NavLink>
+              <NavLink href="" onClick={this.handleChangeLang} id="enLangChange">en</NavLink>
             </NavItem>
           </Nav>
         </Collapse>
